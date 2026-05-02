@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MacroFit — a Calo-style macro calculator</title>
+  <meta name="description" content="A Flutter portfolio piece for a Calo internship application. Five-screen onboarding flow that calculates daily calorie and macronutrient targets." />
+  <meta property="og:title" content="MacroFit" />
+  <meta property="og:description" content="A Calo-style macro calculator built in Flutter." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="#top">MACROFIT</a>
+      <nav class="nav">
+        <a href="#flow">Flow</a>
+        <a href="#math">How it works</a>
+        <a href="#stack">Stack</a>
+        <a class="nav__cta" href="https://github.com/Abdalameeryusuf/macrofit" target="_blank" rel="noopener">View on GitHub →</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero__inner">
+        <div class="hero__copy">
+          <span class="eyebrow">Portfolio piece · Calo internship application</span>
+          <h1>Healthy,<br/>Made&nbsp;Easy.</h1>
+          <p class="lede">
+            A five-screen Flutter onboarding flow that turns weight, height, age, sex, activity level, and a fitness goal into a personalised daily calorie and macronutrient target — using the Mifflin-St Jeor equation.
+          </p>
+          <div class="hero__ctas">
+            <a class="btn btn--primary" href="https://github.com/Abdalameeryusuf/macrofit" target="_blank" rel="noopener">View source on GitHub</a>
+            <a class="btn btn--ghost" href="#flow">See the flow</a>
+          </div>
+          <ul class="hero__meta">
+            <li><strong>Flutter 3.41</strong> · Dart 3.11</li>
+            <li><strong>iOS &amp; Android</strong> · single codebase</li>
+            <li><strong>0 backend</strong> · all on-device</li>
+          </ul>
+        </div>
+        <div class="hero__device" aria-hidden="true">
+          <div class="device">
+            <div class="device__notch"></div>
+            <div class="device__screen">
+              <div class="mock">
+                <div class="mock__brand">MACROFIT</div>
+                <div class="mock__title">Healthy,<br/>Made&nbsp;Easy.</div>
+                <div class="mock__sub">Find your perfect daily macros in under a minute.</div>
+                <div class="mock__cta">Get Started</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="flow" class="section">
+      <div class="container">
+        <h2 class="section__title">The five-screen flow</h2>
+        <p class="section__sub">Welcome → Goal → Profile → Activity → Results. Each screen uses Calo's visual language: rounded cards, light-green selected state, a circular icon app bar, and Inter typography.</p>
+        <div class="screens">
+          <figure class="screen">
+            <img src="../screenshots/welcome.png" alt="Welcome screen" loading="lazy" />
+            <figcaption><span class="step">1</span> Welcome</figcaption>
+          </figure>
+          <figure class="screen">
+            <img src="../screenshots/goal.png" alt="Goal selection screen" loading="lazy" />
+            <figcaption><span class="step">2</span> Goal</figcaption>
+          </figure>
+          <figure class="screen">
+            <img src="../screenshots/profile.png" alt="Profile inputs screen" loading="lazy" />
+            <figcaption><span class="step">3</span> Profile</figcaption>
+          </figure>
+          <figure class="screen">
+            <img src="../screenshots/activity.png" alt="Activity level screen" loading="lazy" />
+            <figcaption><span class="step">4</span> Activity</figcaption>
+          </figure>
+          <figure class="screen">
+            <img src="../screenshots/results.png" alt="Results screen showing daily targets" loading="lazy" />
+            <figcaption><span class="step">5</span> Results</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="math" class="section section--alt">
+      <div class="container math">
+        <div>
+          <h2 class="section__title">How the numbers come out</h2>
+          <p class="section__sub">All calculation logic lives in a single pure-Dart service with no UI imports — easy to test, easy to point to.</p>
+          <p>
+            <strong>BMR</strong> uses Mifflin-St Jeor — the most accurate widely-used predictive equation for resting metabolic rate. <strong>TDEE</strong> multiplies by an activity factor (1.2 → 1.725). <strong>Daily calories</strong> adjust by the goal: −500 (lose), 0 (maintain), +250 (build muscle), +500 (gain). <strong>Macros</strong> are split per goal and converted to grams using 4 / 4 / 9 kcal per gram.
+          </p>
+          <p>
+            Four unit tests cover male BMR, female BMR, the full pipeline against a known input, and the goal-delta arithmetic.
+          </p>
+        </div>
+        <div class="card">
+          <div class="card__title">Macro split per goal</div>
+          <table class="splittable">
+            <thead><tr><th>Goal</th><th>P</th><th>C</th><th>F</th></tr></thead>
+            <tbody>
+              <tr><td>Lose Weight</td><td>35%</td><td>40%</td><td>25%</td></tr>
+              <tr><td>Maintain</td><td>25%</td><td>50%</td><td>25%</td></tr>
+              <tr><td>Build Muscle</td><td>30%</td><td>50%</td><td>20%</td></tr>
+              <tr><td>Gain Weight</td><td>25%</td><td>55%</td><td>20%</td></tr>
+            </tbody>
+          </table>
+          <div class="bar" aria-hidden="true">
+            <span style="width:30%; background:#8B5CF6"></span>
+            <span style="width:50%; background:#F59E0B"></span>
+            <span style="width:20%; background:#60A5FA"></span>
+          </div>
+          <div class="bar__legend">
+            <span><i style="background:#8B5CF6"></i> Protein</span>
+            <span><i style="background:#F59E0B"></i> Carbs</span>
+            <span><i style="background:#60A5FA"></i> Fat</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack" class="section">
+      <div class="container">
+        <h2 class="section__title">What's in the box</h2>
+        <div class="grid">
+          <div class="tile">
+            <h3>5 screens</h3>
+            <p>Welcome, Goal, Profile, Activity, Results — pushed via Flutter's <code>Navigator</code>, with the user profile passed forward as constructor arguments.</p>
+          </div>
+          <div class="tile">
+            <h3>Reusable widgets</h3>
+            <p><code>CaloAppBar</code>, <code>SelectableCard</code>, <code>NumberInput</code>, <code>PrimaryButton</code>, <code>MacroBar</code> — every visual element from the spec, isolated and reused.</p>
+          </div>
+          <div class="tile">
+            <h3>Pure-function service</h3>
+            <p><code>MacroCalculator</code> has no Flutter imports. Mifflin-St Jeor, TDEE, goal deltas, macro grams — all testable in isolation.</p>
+          </div>
+          <div class="tile">
+            <h3>Design tokens</h3>
+            <p><code>AppColors</code> + <code>AppTextStyles</code> hold every colour and Inter weight from the brand spec, so a redesign is a single-file change.</p>
+          </div>
+          <div class="tile">
+            <h3>Inter via google_fonts</h3>
+            <p>One package dependency. No bundled font binaries; resolved at runtime and cached.</p>
+          </div>
+          <div class="tile">
+            <h3>0 lint warnings</h3>
+            <p><code>flutter analyze</code> reports clean against <code>flutter_lints</code>. <code>flutter test</code> runs four passing tests.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container cta__inner">
+        <div>
+          <h2>Take a look at the code.</h2>
+          <p>Spec-driven, ~1,200 lines, single commit history you can read end to end.</p>
+        </div>
+        <a class="btn btn--primary btn--large" href="https://github.com/Abdalameeryusuf/macrofit" target="_blank" rel="noopener">Open the repo →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>Built by <a href="mailto:abdalameeryusuf@gmail.com">Abdalameer Yusuf</a> · Flutter portfolio piece for Calo</span>
+      <span><a href="https://github.com/Abdalameeryusuf/macrofit" target="_blank" rel="noopener">GitHub</a></span>
+    </div>
+  </footer>
+</body>
+</html>
