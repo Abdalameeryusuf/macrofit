@@ -1,11 +1,11 @@
 {
-    "name": "calo_demo",
-    "short_name": "calo_demo",
+    "name": "MacroFit",
+    "short_name": "MacroFit",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#FFFFFF",
+    "theme_color": "#28C76F",
+    "description": "A Flutter macro calculator that turns a quick onboarding flow into a personalised daily calorie and macronutrient target.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

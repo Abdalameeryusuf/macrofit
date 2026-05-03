@@ -1,5 +1,5 @@
 name: macrofit
-description: A Calo-style macro calculator that turns a quick onboarding flow into a personalised daily calorie and macronutrient target.
+description: A Flutter macro calculator that turns a quick onboarding flow into a personalised daily calorie and macronutrient target.
 publish_to: 'none'
 version: 1.0.0+1
 

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_text_styles.dart';
 
-class CaloAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CaloAppBar({
+class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
+  const AppTopBar({
     super.key,
     this.title,
     this.showBack = true,
@@ -82,8 +82,8 @@ class _CircleIconButton extends StatelessWidget {
         child: InkWell(
           onTap: onTap,
           child: SizedBox(
-            width: CaloAppBar._circleSize,
-            height: CaloAppBar._circleSize,
+            width: AppTopBar._circleSize,
+            height: AppTopBar._circleSize,
             child: Icon(
               icon,
               size: 20,

@@ -1,19 +1,19 @@
 # MacroFit
 
-A Calo-style macro calculator that turns a quick onboarding flow into a personalised daily calorie and macronutrient target.
+A Flutter portfolio piece — a five-screen onboarding flow that turns weight, height, age, sex, activity level, and a fitness goal into a personalised daily calorie and macronutrient target.
 
 ![Results screen](screenshots/results.png)
 
 ## Why I built this
 
-I'm putting together a portfolio piece for a Calo internship application. I wanted something that lived end-to-end in the same world Calo's product does — a clean, single-purpose mobile flow that takes a few inputs and gives back a number you'd actually use. It also gave me an excuse to ship a small Flutter app and implement the nutrition math by hand instead of leaning on a library.
+I wanted a small, single-purpose mobile app I could point to as proof of work — clean Flutter UI on the surface, a real nutrition algorithm underneath. The five-screen onboarding is the kind of flow nutrition and fitness apps ship every day; it's a tight scope that lets the design language and the math do the talking instead of hiding behind feature breadth.
 
 ## Features
 
 - 5-screen onboarding flow: welcome → goal → profile → activity → results
 - Mifflin-St Jeor BMR, activity-multiplier TDEE, goal-adjusted daily calories
 - Macro split tailored to the chosen goal, shown as grams + percent + a stacked bar
-- Calo-inspired visual design: green primary, light selected-state tint, rounded cards, circular icon buttons
+- Cohesive visual design: green primary, light selected-state tint, rounded cards, circular icon buttons, Inter typography
 - No backend, no persistence, no API calls — everything is computed locally on-device
 
 ## Calculation methodology
@@ -42,12 +42,12 @@ All of this lives in [`lib/services/macro_calculator.dart`](lib/services/macro_c
 
 ## How I built it
 
-I scaffolded the project with Claude Code from a written spec and a folder of Calo screenshots, then refined it manually. The structure (theme + widgets + models + services + screens), the math, and the visual design were all driven by the spec; the screenshots were the source of truth for spacing, card shape, button style, and the overall green palette.
+Spec-first. I wrote the full build brief (preserved as [`SPEC.md`](SPEC.md)) covering screen flow, design tokens, calculation rules, and file structure, then scaffolded the implementation with Claude Code and refined it manually.
 
-Things I customised after the first pass:
-- Bumped the welcome screen's hero copy to match Calo's actual app instead of the generic spec text
-- Tightened the macro-bar colours to read cleanly at small sizes (purple / orange / blue)
-- Added an extra unit test covering the goal-delta math, since the +250/−500 logic is the part most likely to silently regress
+Things worth calling out:
+- The calculator is a pure-Dart service with no Flutter imports — the easiest part of the codebase to point to and say "here's the algorithm."
+- Every visual primitive (app bar, card, number input, primary button, macro bar) lives in `lib/widgets/` and takes typed props, so a redesign is mostly a token change in `lib/theme/`.
+- An extra unit test covers the goal-delta math (+250/−500/etc.) since that's the part most likely to silently regress.
 
 ## Run it
 
@@ -69,13 +69,11 @@ flutter analyze    # static analysis, should report no issues
 |---------|------|---------|----------|---------|
 | ![Welcome](screenshots/welcome.png) | ![Goal](screenshots/goal.png) | ![Profile](screenshots/profile.png) | ![Activity](screenshots/activity.png) | ![Results](screenshots/results.png) |
 
-> Screenshots are added after running the app on a simulator. Drop the captures into `screenshots/` with the filenames above.
-
 ## What I'd do next
 
 - **Persist the profile** locally (shared_preferences / Hive) so reopening the app skips the flow
 - **History view** showing past targets when weight/activity change over time
-- **Meal logging** with progress bars against the daily target — the obvious next product step for a Calo-style app
+- **Meal logging** with progress bars against the daily target — the obvious next product step
 - **Refine the formula**: support imperial units, add body-fat-percentage (Katch-McArdle) as an alternative BMR source
 - **Goal recommendations** — surface "you'd hit your target weight in ~12 weeks at this rate" instead of just a number
 - **Accessibility pass**: dynamic type, semantic labels on the icon buttons, sufficient hit targets on the stepper buttons

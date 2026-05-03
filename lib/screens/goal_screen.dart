@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/user_profile.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_text_styles.dart';
-import '../widgets/calo_app_bar.dart';
+import '../widgets/app_top_bar.dart';
 import '../widgets/primary_button.dart';
 import '../widgets/selectable_card.dart';
 import 'profile_screen.dart';
@@ -49,7 +49,7 @@ class _GoalScreenState extends State<GoalScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      appBar: const CaloAppBar(),
+      appBar: const AppTopBar(),
       body: SafeArea(
         top: false,
         child: Padding(

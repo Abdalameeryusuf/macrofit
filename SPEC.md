@@ -1,8 +1,8 @@
-# Calo-Style Macro Calculator — Build Spec
+# MacroFit — Build Spec
 
 ## Project Overview
 
-A standalone Flutter app that calculates a user's daily calorie and macronutrient targets based on their profile, activity level, and fitness goal. Designed as a proof-of-work portfolio piece styled to match the Calo (calo.app) brand identity.
+A standalone Flutter app that calculates a user's daily calorie and macronutrient targets based on their profile, activity level, and fitness goal. Designed as a proof-of-work portfolio piece showcasing clean mobile UI work and a real nutrition algorithm.
 
 **Stack:** Flutter (Dart), no backend, no persistence, no external APIs.
 
@@ -18,11 +18,11 @@ A standalone Flutter app that calculates a user's daily calorie and macronutrien
 4. **Activity Level** — Sedentary / Lightly Active / Very Active / Highly Active
 5. **Results** — BMR, TDEE, daily calorie target, macro split (g + %)
 
-Navigation: forward via "Next"/"Continue" button, backward via top-left back arrow. Top-right has a headphones icon (decorative, for visual parity with Calo — non-functional).
+Navigation: forward via "Next"/"Continue" button, backward via top-left back arrow. Top-right has a headphones icon (decorative — non-functional).
 
 ---
 
-## Design System (match Calo exactly)
+## Design System
 
 ### Colors
 - Primary green: `#28C76F` (buttons, selected state borders, checkmarks)
@@ -73,7 +73,7 @@ Navigation: forward via "Next"/"Continue" button, backward via top-left back arr
 ## Screen-by-Screen Spec
 
 ### Screen 1: Welcome
-- Centered Calo-style logo placeholder (use a simple text "MacroFit" or similar in green, bold, large)
+- Centered logo placeholder (use a simple text "MacroFit" or similar in green, bold, large)
 - Tagline below: "Find your perfect daily macros"
 - Bottom: green "Get Started" button
 
@@ -120,7 +120,7 @@ Navigation: forward via "Next"/"Continue" button, backward via top-left back arr
   - BMR: "1,750 kcal" — label "Basal Metabolic Rate"
   - TDEE: "2,712 kcal" — label "Total Daily Energy"
 - **Macro breakdown card**:
-  - Stacked horizontal bar (purple for protein, orange for carbs, blue for fat — matches Calo's macro bar in screenshot 1)
+  - Stacked horizontal bar (purple for protein, orange for carbs, blue for fat)
   - Three columns below the bar showing: grams + percentage + label
     - Example: "186g (30%) Protein" / "311g (50%) Carbs" / "55g (20%) Fat"
 - Bottom: "Start Over" button (returns to Welcome screen, resets state)
@@ -183,7 +183,7 @@ lib/
     activity_screen.dart
     results_screen.dart
   widgets/
-    calo_app_bar.dart           — reusable top bar with back + headphones
+    app_top_bar.dart            — reusable top bar with back + headphones
     selectable_card.dart        — reusable card for goal/activity selection
     number_input.dart           — reusable +/- number input
     primary_button.dart         — reusable green bottom button
@@ -212,7 +212,7 @@ State management: simple — pass the `UserProfile` object forward through Navig
 
 The README should include:
 1. **Header** — project name, one-line description, screenshot of the results screen
-2. **Why I built this** — short paragraph: portfolio piece for a Calo internship application, demonstrates Flutter UI work and nutrition algorithm implementation
+2. **Why I built this** — short paragraph: portfolio piece demonstrating Flutter UI work and nutrition algorithm implementation
 3. **Features** — bullet list of what it does
 4. **Calculation methodology** — Mifflin-St Jeor reference + brief explanation of macro splits
 5. **How I built it** — honest note: scaffolded with Claude Code, then refined manually. Mention what you customized or fixed.
@@ -225,8 +225,8 @@ The README should include:
 ## Definition of Done
 
 - All 5 screens build and navigate correctly
-- Calculations produce sensible numbers (sanity-check: 25-year-old male, 75kg, 175cm, lightly active, build muscle → ~2,800 kcal/day, ~210g protein)
-- Visual design matches Calo's screenshots within reasonable margin
+- Calculations produce sensible numbers (sanity-check: 25-year-old male, 75kg, 175cm, lightly active, build muscle → ~2,620 kcal/day, ~197g protein per Mifflin-St Jeor)
+- Visual design is internally consistent and screenshot-friendly
 - App runs on iOS simulator and Android emulator without errors
 - Unit tests pass
 - README is complete with screenshots
